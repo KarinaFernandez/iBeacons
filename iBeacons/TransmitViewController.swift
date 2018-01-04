@@ -27,9 +27,6 @@ class TransmitViewController: UIViewController, CBPeripheralManagerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        initBeaconRegion()
-        setLabels()
     }
 
     // Actions
@@ -38,13 +35,20 @@ class TransmitViewController: UIViewController, CBPeripheralManagerDelegate {
         peripheralManager = CBPeripheralManager.init(delegate: self, queue: nil)
     }
     
-    // Functions
-    func initBeaconRegion() {
-         // E06F95E4-FCFC-42C6-B4F8-F6BAE87EA1A0  - com.devfright.myRegion - 0-1 /  8AEFB031-6C32-486F-825B-E26FA193487D - iPad -  2-3
+    @IBAction func beacon1Tapped(_ sender: UIButton) {
+        beaconRegion = CLBeaconRegion.init(proximityUUID: UUID.init(uuidString: "8AEFB031-6C32-486F-825B-E26FA193487D")!,
+                                           major: 1,
+                                           minor: 0,
+                                           identifier: "iPad")
+        setLabels()
+    }
+    
+    @IBAction func beacon2Tapped(_ sender: UIButton) {
         beaconRegion = CLBeaconRegion.init(proximityUUID: UUID.init(uuidString: "E06F95E4-FCFC-42C6-B4F8-F6BAE87EA1A0")!,
                                            major: 2,
                                            minor: 1,
-                                           identifier: "com.devfright.myRegion")
+                                           identifier: "iPod")
+        setLabels()
     }
     
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {

@@ -32,8 +32,8 @@ class TrackViewController: UIViewController, CLLocationManagerDelegate {
     
     // E06F95E4-FCFC-42C6-B4F8-F6BAE87EA1A0  - com.devfright.myRegion  /  8AEFB031-6C32-486F-825B-E26FA193487D - iPad
     func getBeaconRegion() -> CLBeaconRegion {
-        let beaconRegion = CLBeaconRegion.init(proximityUUID: UUID.init(uuidString: "E06F95E4-FCFC-42C6-B4F8-F6BAE87EA1A0")!,
-                                               identifier: "com.devfright.myRegion")
+        let beaconRegion = CLBeaconRegion.init(proximityUUID: UUID.init(uuidString: "8AEFB031-6C32-486F-825B-E26FA193487D")!,
+                                               identifier: "iPad")
         return beaconRegion
     }
     
