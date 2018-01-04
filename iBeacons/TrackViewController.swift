@@ -27,7 +27,17 @@ class TrackViewController: UIViewController, CLLocationManagerDelegate {
         locationManager = CLLocationManager.init()
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
-        startScanningForBeaconRegion(beaconRegion: getBeaconRegion())
+        
+        let uuid = ["E06F95E4-FCFC-42C6-B4F8-F6BAE87EA1A0", "8AEFB031-6C32-486F-825B-E26FA193487D"]
+        let identifiers = ["iPod", "iPad"]
+        
+        for i in 0...uuid.count-1 {
+            let beaconRegion = CLBeaconRegion.init(proximityUUID: UUID.init(uuidString: uuid[i])!,
+                                                   identifier: identifiers[i])
+            startScanningForBeaconRegion(beaconRegion: beaconRegion)
+        }
+        
+        
     }
     
     // E06F95E4-FCFC-42C6-B4F8-F6BAE87EA1A0  - com.devfright.myRegion  /  8AEFB031-6C32-486F-825B-E26FA193487D - iPad
@@ -47,8 +57,8 @@ class TrackViewController: UIViewController, CLLocationManagerDelegate {
         let beacon = beacons.first  // The higger RSSI is the closest to the device and the beacons are sorted
         
         if beacons.count > 0 {
+            print("beacons: \(beacons)")
             guard let beacon = beacon else { return }
-            
             iBeaconFoundLabel.text = "Yes"
             proximityUUIDLabel.text = beacon.proximityUUID.uuidString
             majorLabel.text = beacon.major.stringValue
@@ -64,16 +74,7 @@ class TrackViewController: UIViewController, CLLocationManagerDelegate {
                 distanceLabel.text = "Far Proximity"
             }
             rssiLabel.text = String(describing: beacon.rssi)
-        } else {
-            iBeaconFoundLabel.text = "No"
-            proximityUUIDLabel.text = ""
-            majorLabel.text = ""
-            minorLabel.text = ""
-            accuracyLabel.text = ""
-            distanceLabel.text = ""
-            rssiLabel.text = ""
         }
-        
     }
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
