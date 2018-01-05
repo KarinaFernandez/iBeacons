@@ -36,15 +36,6 @@ class TrackViewController: UIViewController, CLLocationManagerDelegate {
                                                    identifier: identifiers[i])
             startScanningForBeaconRegion(beaconRegion: beaconRegion)
         }
-        
-        
-    }
-    
-    // E06F95E4-FCFC-42C6-B4F8-F6BAE87EA1A0  - com.devfright.myRegion  /  8AEFB031-6C32-486F-825B-E26FA193487D - iPad
-    func getBeaconRegion() -> CLBeaconRegion {
-        let beaconRegion = CLBeaconRegion.init(proximityUUID: UUID.init(uuidString: "8AEFB031-6C32-486F-825B-E26FA193487D")!,
-                                               identifier: "iPad")
-        return beaconRegion
     }
     
     func startScanningForBeaconRegion(beaconRegion: CLBeaconRegion) {
@@ -54,11 +45,41 @@ class TrackViewController: UIViewController, CLLocationManagerDelegate {
     
     // Delegate Methods
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
-        let beacon = beacons.first  // The higger RSSI is the closest to the device and the beacons are sorted
+        print(beacons)
         
+        var closestBeacon: CLBeacon? = nil
+        var closest: CLBeacon? = nil
+        let minRSSI = -10000
+        let minAccuracy: Double = -1000
+        
+        // Search the inmediate beacons
+        let inmediateBeacons = beacons
+            .filter { $0.proximity == CLProximity.immediate }
+        
+        for beacon in inmediateBeacons {
+            if beacon.accuracy < CLLocationAccuracy.greatestFiniteMagnitude {
+                closest = beacon
+            }
+        }
+        closestBeacon = closest
+        
+        // Search the near beacons if the is not immediate beacon
+        if closestBeacon == nil {
+            var minBeacon: CLBeacon? = nil
+            let nearBeacons = beacons
+                .filter { $0.proximity == CLProximity.near }
+            // Search the closest
+            for beacon in nearBeacons {
+                if beacon.accuracy < minAccuracy && beacon.rssi > minRSSI {
+                    minBeacon = beacon
+                }
+            }
+            closestBeacon = minBeacon
+        }
+
         if beacons.count > 0 {
             print("beacons: \(beacons)")
-            guard let beacon = beacon else { return }
+            guard let beacon = closestBeacon else { return }
             iBeaconFoundLabel.text = "Yes"
             proximityUUIDLabel.text = beacon.proximityUUID.uuidString
             majorLabel.text = beacon.major.stringValue
