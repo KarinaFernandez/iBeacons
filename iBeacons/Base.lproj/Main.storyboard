@@ -125,6 +125,13 @@
                                     <action selector="beacon2Tapped:" destination="gmX-bl-eaF" eventType="touchUpInside" id="iIQ-ZO-Hdh"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I1n-yW-Lxm">
+                                <rect key="frame" x="130" y="427.5" width="114" height="30"/>
+                                <state key="normal" title="Stop transmiting"/>
+                                <connections>
+                                    <action selector="stopTransmiting:" destination="gmX-bl-eaF" eventType="touchUpInside" id="vnq-ss-1Ny"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -141,13 +148,16 @@
                             <constraint firstItem="FEv-ff-6bp" firstAttribute="centerY" secondItem="9n1-TB-HKn" secondAttribute="centerY" id="UPD-Ky-xAf"/>
                             <constraint firstItem="rLr-ov-noI" firstAttribute="leading" secondItem="6aI-7I-FBW" secondAttribute="leading" constant="50" id="Wg1-9a-yDB"/>
                             <constraint firstItem="1zl-5I-yns" firstAttribute="centerX" secondItem="tCd-Uu-KGV" secondAttribute="centerX" id="YYx-T7-cs6"/>
+                            <constraint firstItem="I1n-yW-Lxm" firstAttribute="top" secondItem="m70-nM-QP0" secondAttribute="bottom" constant="20" id="cUZ-pR-2xv"/>
                             <constraint firstItem="FEv-ff-6bp" firstAttribute="top" secondItem="6aI-7I-FBW" secondAttribute="top" constant="15" id="cvT-Dy-WqY"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Hhk-Ga-wqD" secondAttribute="trailing" constant="20" symbolic="YES" id="gi0-cY-9Oc"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="DRZ-qS-9JD" secondAttribute="trailing" constant="20" symbolic="YES" id="icg-be-ZbI"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="C3c-wt-mua" secondAttribute="trailing" constant="20" symbolic="YES" id="ig9-Ev-BQg"/>
                             <constraint firstItem="rLr-ov-noI" firstAttribute="top" secondItem="6aI-7I-FBW" secondAttribute="top" constant="80" id="nWV-IZ-ZQq"/>
                             <constraint firstItem="Vkk-pD-2sO" firstAttribute="leading" secondItem="rLr-ov-noI" secondAttribute="trailing" constant="30" id="pJD-ZR-wmZ"/>
+                            <constraint firstItem="I1n-yW-Lxm" firstAttribute="centerX" secondItem="m70-nM-QP0" secondAttribute="centerX" id="qgU-tk-AiT"/>
                             <constraint firstItem="tCd-Uu-KGV" firstAttribute="centerY" secondItem="C3c-wt-mua" secondAttribute="centerY" id="skX-tx-2fY"/>
+                            <constraint firstItem="9n1-TB-HKn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rar-1x-gkS" secondAttribute="leading" constant="20" symbolic="YES" id="w1M-eF-XFK"/>
                             <constraint firstItem="6aI-7I-FBW" firstAttribute="trailing" secondItem="FEv-ff-6bp" secondAttribute="trailing" constant="35" id="wd7-na-rDU"/>
                             <constraint firstItem="Hhk-Ga-wqD" firstAttribute="top" secondItem="C3c-wt-mua" secondAttribute="bottom" constant="25" id="x8K-nb-399"/>
                             <constraint firstItem="rWW-pK-ujz" firstAttribute="centerX" secondItem="1zl-5I-yns" secondAttribute="centerX" id="yfv-d2-mJD"/>
@@ -279,6 +289,7 @@
                             <constraint firstItem="58R-au-ciR" firstAttribute="centerY" secondItem="lY2-2I-AZ8" secondAttribute="centerY" id="F6Y-Hm-duR"/>
                             <constraint firstItem="qvA-xm-1eZ" firstAttribute="leading" secondItem="WbL-8e-nPc" secondAttribute="leading" id="FyQ-RS-x3w"/>
                             <constraint firstItem="eVc-lf-7Go" firstAttribute="centerX" secondItem="58R-au-ciR" secondAttribute="centerX" id="IcG-z3-ivR"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="SQA-hP-Vwz" secondAttribute="trailing" constant="20" symbolic="YES" id="IpH-4r-r9f"/>
                             <constraint firstItem="pc5-VU-N32" firstAttribute="centerX" secondItem="e3r-ow-yqc" secondAttribute="centerX" id="Kpp-0r-ezp"/>
                             <constraint firstItem="7fn-yW-BpX" firstAttribute="top" secondItem="Xas-F3-jaW" secondAttribute="bottom" constant="30" id="Lpn-oa-enf"/>
                             <constraint firstItem="Vzp-h3-ztm" firstAttribute="centerY" secondItem="UTZ-6m-CAU" secondAttribute="centerY" id="Lsn-ol-W1f"/>
