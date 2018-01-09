@@ -45,19 +45,27 @@ class TrackViewController: UIViewController, CLLocationManagerDelegate {
     
     // Delegate Methods
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
-        print(beacons)
+      //  print(beacons)
         
         var closestBeacon: CLBeacon? = nil
         var closest: CLBeacon? = nil
-        let minRSSI = -10000
-        let minAccuracy: Double = -1000
+        var minRSSI = -1000
         
         // Search the inmediate beacons
         let inmediateBeacons = beacons
             .filter { $0.proximity == CLProximity.immediate }
         
+        if inmediateBeacons.count > 0 {
+            minRSSI = (inmediateBeacons.first?.rssi)!
+        }
+        
+        // Get the more strenght signal, to get the closest
         for beacon in inmediateBeacons {
-            if beacon.accuracy < CLLocationAccuracy.greatestFiniteMagnitude {
+            print("Inmediate beacons:  \(inmediateBeacons)")
+            
+            // The closer to 0 is the stronger signal. The value "0" is "Unknown" rssi
+            if beacon.rssi != 0 && beacon.rssi >= minRSSI {
+                minRSSI = beacon.rssi
                 closest = beacon
             }
         }
@@ -68,9 +76,18 @@ class TrackViewController: UIViewController, CLLocationManagerDelegate {
             var minBeacon: CLBeacon? = nil
             let nearBeacons = beacons
                 .filter { $0.proximity == CLProximity.near }
+            
+            if nearBeacons.count > 0 {
+                minRSSI = (nearBeacons.first?.rssi)!
+            }
+            
             // Search the closest
             for beacon in nearBeacons {
-                if beacon.accuracy < minAccuracy && beacon.rssi > minRSSI {
+                print("NEAR beacons:  \(nearBeacons)")
+                
+                // The closer to 0 is the stronger signal. The 0 value is "Unknown" rssi
+                if beacon.rssi != 0 && beacon.rssi >= minRSSI {
+                    minRSSI = beacon.rssi
                     minBeacon = beacon
                 }
             }
